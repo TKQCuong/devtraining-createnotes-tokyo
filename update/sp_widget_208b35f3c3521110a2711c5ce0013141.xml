@@ -4,9 +4,9 @@
         <client_script><![CDATA[function($rootScope,$scope) {
 	/* widget controller */
 	var c = this;
-	var index;
+	c.index = 0;
 	c.selectItem = function(idx) {
-		index = idx;
+		c.index = idx;
 		var id = c.data.notes[idx].sys_id;
 		console.log('Note ID: ' + id);
 		$rootScope.noteID = id;
@@ -14,8 +14,8 @@
 	}
 
 	$rootScope.$on('updateNote', function(event,data) {
-		c.data.notes[index].title = $rootScope.data.title;
-		c.data.notes[index].note = $rootScope.data.note;
+		c.data.notes[c.index].title = data.title;
+		c.data.notes[c.index].note = data.note;
 	})
 
 
